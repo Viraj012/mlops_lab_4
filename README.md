@@ -4,8 +4,6 @@
 
 ## Additional Enhancements
 
-In addition to completing all the required lab modules, the following extra calculator functions have been added with complete test coverage:
-
 - **Division Function (fun5)**: Divides two numbers with proper zero-division error handling
 - **Power/Exponent Function (fun6)**: Raises a number to any power including negative exponents
 - **Square Root Function (fun7)**: Calculates square root with validation for negative numbers
