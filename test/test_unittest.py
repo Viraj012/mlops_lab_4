@@ -1,0 +1,83 @@
+import sys
+import os
+import unittest
+
+# Get the path to the project's root directory
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(project_root)
+
+from src import calculator
+
+
+class TestCalculator(unittest.TestCase):
+
+    def test_fun1(self):
+        self.assertEqual(calculator.fun1(2, 3), 5)
+        self.assertEqual(calculator.fun1(5, 0), 5)
+        
+        self.assertEqual(calculator.fun1(-1, 1), 0)
+        self.assertEqual(calculator.fun1(-1, -1), -2)
+
+    def test_fun2(self):
+        self.assertEqual(calculator.fun2(2, 3), -1)
+        self.assertEqual(calculator.fun2(5, 0), 5)
+        self.assertEqual(calculator.fun2(-1, 1), -2)
+        self.assertEqual(calculator.fun2(-1, -1), 0)
+
+    def test_fun3(self):
+        self.assertEqual(calculator.fun3(2, 3), 6)
+        self.assertEqual(calculator.fun3(5, 0), 0)
+        self.assertEqual(calculator.fun3(-1, 1), -1)
+        self.assertEqual(calculator.fun3(-1, -1), 1)
+
+    def test_fun4(self):
+        self.assertEqual(calculator.fun4(2, 3, 5), 10)
+        self.assertEqual(calculator.fun4(5, 0, -1), 4)
+        self.assertEqual(calculator.fun4(-1, -1, -1), -3)
+        self.assertEqual(calculator.fun4(-1, -1, 100), 98)
+
+    def test_fun5(self):
+        # Normal division
+        self.assertEqual(calculator.fun5(10, 2), 5)
+        self.assertEqual(calculator.fun5(9, 3), 3)
+        self.assertEqual(calculator.fun5(-10, 2), -5)
+        self.assertEqual(calculator.fun5(7, 2), 3.5)
+        
+        # Test zero division error
+        with self.assertRaises(ZeroDivisionError):
+            calculator.fun5(10, 0)
+
+    def test_fun6(self):
+        # Power/exponent tests
+        self.assertEqual(calculator.fun6(2, 3), 8)
+        self.assertEqual(calculator.fun6(5, 2), 25)
+        self.assertEqual(calculator.fun6(10, 0), 1)
+        self.assertEqual(calculator.fun6(2, -1), 0.5)
+        self.assertEqual(calculator.fun6(-2, 3), -8)
+
+    def test_fun7(self):
+        # Square root tests
+        self.assertEqual(calculator.fun7(4), 2)
+        self.assertEqual(calculator.fun7(9), 3)
+        self.assertEqual(calculator.fun7(16), 4)
+        self.assertEqual(calculator.fun7(0), 0)
+        self.assertAlmostEqual(calculator.fun7(2), 1.414, places=2)
+        
+        # Test negative number error
+        with self.assertRaises(ValueError):
+            calculator.fun7(-4)
+
+    def test_fun8(self):
+        # Modulo tests
+        self.assertEqual(calculator.fun8(10, 3), 1)
+        self.assertEqual(calculator.fun8(20, 6), 2)
+        self.assertEqual(calculator.fun8(15, 4), 3)
+        self.assertEqual(calculator.fun8(10, 5), 0)
+        
+        # Test zero divisor error
+        with self.assertRaises(ZeroDivisionError):
+            calculator.fun8(10, 0)
+
+
+if __name__ == '__main__':
+    unittest.main()
